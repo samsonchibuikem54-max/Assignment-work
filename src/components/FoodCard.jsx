@@ -32,7 +32,7 @@ const FoodCard = ({ item }) => {
       </div>
 
       {/* Quantity & Add Button */}
-      <div className="flex items-center gap-4 gap-x-10 mt-3">
+      <div className="flex items-center justify-between mt-3">
         {/* Quantity Controls */}
         <div className="flex items-center w-full">
           {/* Decrease */}

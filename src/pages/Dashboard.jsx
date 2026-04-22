@@ -17,6 +17,7 @@ const categories = [
 
 const Dashboard = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [showSidebar, setShowSidebar] = useState(false);
   const [filters, setFilters] = useState({
     veg: false,
     nonVeg: false,
@@ -37,20 +38,25 @@ const Dashboard = () => {
       : menuData.filter((item) => item.category === selectedCategory);
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      <Sidebar />
-
+    <div className="flex flex-col lg:flex-row h-screen">
+      <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+      <button
+        onClick={() => setShowSidebar(true)}
+        className="lg:hidden mb-3 bg-red-500 text-white px-3 py-2 rounded"
+      >
+        ☰ Menu
+      </button>
       <div className="flex-1 p-6 flex flex-col gap-4">
         {/* Header */}
         <div className="flex justify-between items-center">
-          <div className="flex items-center bg-white px-3 py-2 rounded-lg shadow w-4/5">
+          <div className="flex items-center bg-white px-3 py-2 rounded-lg shadow w-full lg:w-4/5">
             <Search size={20} className="text-gray-400 mr-2" />
             <input placeholder="Search food..." className="outline-none" />
           </div>
         </div>
 
         {/* 🔥 CATEGORY FILTERS */}
-        <div className="flex gap-4 mt-4">
+        <div className="flex gap-3 mt-4 overflow-x-auto whitespace-nowrap">
           {categories.map((cat) => (
             <button
               key={cat.name}
@@ -93,10 +99,9 @@ const Dashboard = () => {
             />
 
             {/* 2️⃣ COLOR BOX (ALWAYS VISIBLE) */}
-           <div className="w-4 h-4 border-green-500 border rounded-sm flex items-center justify-center">
+            <div className="w-4 h-4 border-green-500 border rounded-sm flex items-center justify-center">
               <div className="h-2.5 w-2.5 bg-green-500 rounded-full"></div>
             </div>
-
 
             {/* 3️⃣ TEXT */}
             <span>Veg</span>
@@ -114,7 +119,6 @@ const Dashboard = () => {
             <div className="w-4 h-4 border-red-500 border rounded-sm flex items-center justify-center">
               <div className="h-2.5 w-2.5 bg-red-500 rounded-full"></div>
             </div>
-
 
             <span>Non Veg</span>
           </label>
@@ -136,14 +140,14 @@ const Dashboard = () => {
           </label>
         </div>
         {/* Food Grid */}
-        <div className="grid grid-cols-3 gap-5 overflow-y-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-y-auto">
           {filteredItems.map((item) => (
             <FoodCard key={item.id} item={item} />
           ))}
         </div>
-         <SaveOrders />
+        <SaveOrders />
       </div>
-     
+
       <OrderPanel />
     </div>
   );

@@ -8,7 +8,7 @@ import {
   Settings,
 } from "lucide-react";
 
-const Sidebar = () => {
+const Sidebar = ({ showSidebar, setShowSidebar }) => {
   const menu = [
     { name: "Menu", icon: <LayoutGrid size={18} /> },
     { name: "Orders", icon: <ShoppingCart size={18} /> },
@@ -20,15 +20,29 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="w-64 bg-gray-50 p-5 flex flex-col border-r">
+    <div
+      className={`
+        fixed top-0 left-0 h-full w-64 bg-gray-50 p-5 flex flex-col border-r
+        transform transition-transform duration-300 z-[60]
+        ${showSidebar ? "translate-x-0" : "-translate-x-full"}
+        lg:translate-x-0 lg:static
+      `}
+    >
+      {/* CLOSE BUTTON (MOBILE ONLY) */}
+      <button
+        onClick={() => setShowSidebar(false)}
+        className="lg:hidden mb-4 text-red-500"
+      >
+        ✕ Close
+      </button>
 
-      {/* Logo */}
+      {/* LOGO */}
       <h1 className="text-xl font-bold mb-8">
         <span className="text-red-500">Cherry</span>
         <span className="text-gray-800">POS</span>
       </h1>
 
-      {/* Menu */}
+      {/* MENU */}
       <ul className="space-y-2">
         {menu.map((item, index) => (
           <li
@@ -41,17 +55,16 @@ const Sidebar = () => {
               }`}
           >
             {item.icon}
-            <span className="text-sm font-medium">{item.name}</span>
+            <span className="text-sm">{item.name}</span>
           </li>
         ))}
       </ul>
 
-      {/* Footer */}
-      <div className="mt-auto bg-white border rounded-lg p-3 text-sm flex items-center justify-between ">
-        <span className="text-gray-600">Tasty Bites, Chennai</span>
-        <span className="cursor-pointer">⚙️</span>
+      {/* FOOTER */}
+      <div className="mt-auto bg-white border rounded-lg p-3 text-sm flex justify-between">
+        <span className="text-gray-600">Tasty Bites</span>
+        <span>⚙️</span>
       </div>
-
     </div>
   );
 };

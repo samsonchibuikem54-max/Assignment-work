@@ -9,18 +9,18 @@ const OrderPanel = () => {
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
 
   return (
-    <div className="w-80 bg-white p-5 shadow-xl flex flex-col rounded-l-2xl">
+    <div className="w-full lg:w-80 bg-white p-5 shadow-xl flex flex-col rounded-l-2xl mt-4 lg:mt-0">
       <div className="mt-2 border-b pb-3">
         <h2 className="text-xl font-bold mt-4 py-2">🧾 Order List</h2>
       </div>
       <div className="flex gap-3 mt-4 bg-white rounded-lg mb-4 p-2">
-        <h2 className="border rounded-lg p-2 bg-red-100 text-red-700  text-center cursor-pointer w-15">
+        <h2 className="border rounded-lg p-2 bg-red-100 text-red-700  text-center cursor-pointer w-20">
           Dining{" "}
         </h2>
-        <h2 className="border rounded-lg p-2 text-black  text-center cursor-pointer w-15">
+        <h2 className="border rounded-lg p-2 text-black  text-center cursor-pointer w-20">
           Take Away{" "}
         </h2>
-        <h2 className="border rounded-lg p-2 text-black  text-center cursor-pointer">
+        <h2 className="border rounded-lg p-2 text-black  text-center cursor-pointer w-20">
           Delivery{" "}
         </h2>
       </div>
@@ -44,7 +44,7 @@ const OrderPanel = () => {
             <img
               src={item.image}
               alt={item.name}
-              className="w-24 h-28 rounded-lg object-cover"
+              className="w-16 h-16 lg:w-24 lg:h-28 rounded-lg object-cover"
             />
 
             {/* Info */}
