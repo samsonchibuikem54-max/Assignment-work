@@ -42,7 +42,7 @@ const Dashboard = () => {
       <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
       <button
         onClick={() => setShowSidebar(true)}
-        className="lg:hidden mb-3 bg-red-500 text-white px-3 py-2 rounded"
+        className="lg:hidden mb-3 ml-80 bg-red-500 text-white px-3 py-2 rounded float-none"
       >
         ☰ Menu
       </button>
